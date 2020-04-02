@@ -12,8 +12,9 @@ node{
 		app=docker.build("banded-elevator-272716/kubernates-microservice")
 	}
 	stage("Push Docker image to Container Registry"){
-		docker.withRegistry('https://eu.gcr.io', 'gcr:myregistry') {
- 	 	app.push("${env.BUILD_NUMBER}")
- 	 	app.push("latest")
+			docker.withRegistry('https://eu.gcr.io', 'gcr:myregistry') {
+ 	 		app.push("${env.BUILD_NUMBER}")
+ 	 		app.push("latest")
+		}
 	}
 }
