@@ -3,7 +3,7 @@ node{
 		git credentialsId: 'GITHUB_CREDENTIALS', url: 'https://github.com/surjeetkm/kubernetes.git'
 	}
 	stage("Maven clean build artifact"){
-		def mavenHome= tool: "Maven", type: "maven"
+		def mavenHome= tool name: "Maven", type: "maven"
 		def command= "${mavenHome}/bin/mvn"
 		sh "${command} clean package"
 	}
