@@ -3,7 +3,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,7 +39,7 @@ public class StudentServiceController {
  
     }
     @RequestMapping(value = "/getStudentDetailsForSchool/{schoolname}", method = RequestMethod.GET)
-    public List<Student> getStudents(@PathVariable String schoolname) {
+    public List<Student> getStudentsbyName(@PathVariable String schoolname) {
         System.out.println("Getting Student details for " + schoolname);
  
         List<Student> studentList = schooDB.get(schoolname);
@@ -46,5 +49,13 @@ public class StudentServiceController {
             studentList.add(std);
         }
         return studentList;
+    }
+    @RequestMapping(value = "/getStudentDetailsForSchool", method = RequestMethod.GET)
+    public ResponseEntity<List<Student>> getAllStudents(){
+    	List<Student> list=schooDB.values().stream().flatMap(x->x.stream()).collect(Collectors.toList());
+    	System.out.println("Get All Students Invoked.........");
+    	
+    	ResponseEntity<List<Student>> entity=new ResponseEntity<List<Student>>(list, HttpStatus.ACCEPTED);
+    	return entity;
     }
 }

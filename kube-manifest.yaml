@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kube-deployment
+  labels:
+    app: kube
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ngix-select
+  template:
+    metadata:
+      labels:
+        app: ngix-select
+    spec:
+      containers:
+      - name: ngix
+        image: eu.gcr.io/kubernetes-pro-273015/kubernates-microservice
+        ports:
+        - containerPort: 8080
+
+---
+    
+  
+apiVersion: v1
+kind: Service
+metadata:
+  name: replaceme
+  labels:
+    app: replaceme
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 8080
+    protocol: TCP
+  selector:
+    app: replaceme
