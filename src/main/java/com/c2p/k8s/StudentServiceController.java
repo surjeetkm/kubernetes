@@ -17,7 +17,7 @@ import com.c2p.mini.domain.Student;
 @RestController
 public class StudentServiceController {
 
-	@Value("${welcome.message}")
+	@Value("${welcome.message: Default message Not Working}")
 	private String message;
 	private static Map<String, List<Student>> schooDB = new HashMap<String, List<Student>>();
 	 
