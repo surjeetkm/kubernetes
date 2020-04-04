@@ -10,7 +10,7 @@ public class ScheduleComponent {
 	@Autowired
 	private WelcomeConfiguration config;
 	
-	@Scheduled(fixedDelay = 3000)
+	@Scheduled(fixedDelay = 1000)
 	public void schedule() {
 		System.out.println("Messages::::::::::::::::::"+config.getMessage());
 	}

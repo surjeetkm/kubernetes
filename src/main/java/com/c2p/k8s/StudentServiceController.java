@@ -17,7 +17,7 @@ import com.c2p.mini.domain.Student;
 @RestController
 public class StudentServiceController {
 
-	@Value("${message:Welcome To World!}")
+	@Value("${welcome.message}")
 	private String message;
 	private static Map<String, List<Student>> schooDB = new HashMap<String, List<Student>>();
 	 
@@ -63,7 +63,7 @@ public class StudentServiceController {
     }
     @RequestMapping(value="/getmsg",method = RequestMethod.GET)
     public String getMessage() {
-    	System.out.println("msg in controller:"+ message);
+    	System.out.println("msg in controller==========================:"+ message);
     	return message;
     }
 }
