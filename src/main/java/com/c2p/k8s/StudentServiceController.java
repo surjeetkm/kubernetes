@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,8 @@ import com.c2p.mini.domain.Student;
 @RestController
 public class StudentServiceController {
 
+	@Value("${message:Welcome To World!}")
+	private String message;
 	private static Map<String, List<Student>> schooDB = new HashMap<String, List<Student>>();
 	 
     static {
@@ -57,5 +60,10 @@ public class StudentServiceController {
     	
     	ResponseEntity<List<Student>> entity=new ResponseEntity<List<Student>>(list, HttpStatus.ACCEPTED);
     	return entity;
+    }
+    @RequestMapping(value="/getmsg",method = RequestMethod.GET)
+    public String getMessage() {
+    	System.out.println("msg in controller:"+ message);
+    	return message;
     }
 }
