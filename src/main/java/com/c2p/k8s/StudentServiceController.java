@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,8 @@ public class StudentServiceController {
 	@Value("${welcome.message: Default message Not Working}")
 	private String message;
 	private static Map<String, List<Student>> schooDB = new HashMap<String, List<Student>>();
-	 
+	@Autowired
+	private WelcomeConfiguration welcomeConfiguration;
     static {
         schooDB = new HashMap<String, List<Student>>();
  
@@ -51,6 +53,14 @@ public class StudentServiceController {
             Student std = new Student("Not Found", "N/A");
             studentList.add(std);
         }
+        System.out.println(welcomeConfiguration.getCity());
+        System.out.println(welcomeConfiguration.getCountry());
+        System.out.println(welcomeConfiguration.getFirstname());
+        System.out.println(welcomeConfiguration.getLastname());
+        System.out.println(welcomeConfiguration.getState());
+        System.out.println(welcomeConfiguration.getMiddlename());
+        System.out.println(welcomeConfiguration.getPlace());
+        
         return studentList;
     }
     @RequestMapping(value = "/getStudentDetailsForSchool", method = RequestMethod.GET)
@@ -64,6 +74,6 @@ public class StudentServiceController {
     @RequestMapping(value="/getmsg",method = RequestMethod.GET)
     public String getMessage() {
     	System.out.println("msg in controller==========================:"+ message);
-    	return message;
+    	return welcomeConfiguration.getCountry();
     }
 }

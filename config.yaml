@@ -1,8 +1,21 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: config-example
-data: 
+  name: kubernetes-configmap
+data:
   application.properties: |-
-    welcome.message=Hello i m config Map from kuber
-    message=Hi Surjeet Hoz r u?
+    welcome.message = Hi Surjeet Welcome message from app.prop
+    message = Hi Test message from app.prop
+    firstname = Surjeet
+    lastname = Mohanty
+    middlename = kumar
+    city = Bangalore
+    state = Karnataka
+    place = Marathalli
+    country = India
+    
+    envFrom:
+      - configMapRef:
+          name: kubernetes-configmap
+    securityContext:
+            privileged: false
