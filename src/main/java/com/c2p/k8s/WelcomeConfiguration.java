@@ -5,29 +5,22 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
-@Component("welcomeConfiguration")
-@ConfigurationProperties
+@Configuration
+@ConfigurationProperties(prefix = "myconfig")
 public class WelcomeConfiguration {
-	
-	@Value(value = "${firstname: FN}")
+
 	private String firstname;
 
-	@Value(value = "${lastname: LN}")
 	private String lastname;
 
-	@Value(value = "${middlename: MN}")
 	private String middlename;
 
-	@Value("${city: C}")
 	private String city;
 
-	@Value("${state: S}")
 	private String state;
 
-	@Value("${place: P}")
 	private String place;
 
-	@Value("${country: C}")
 	private String country;
 
 	public String getFirstname() {

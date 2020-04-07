@@ -14,11 +14,5 @@ public class KubernetesMicroserviceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(KubernetesMicroserviceApplication.class, args);
 	}
-	@Bean
-	 public static PropertySourcesPlaceholderConfigurer   propertySourcesPlaceholderConfigurer() {
-	     PropertySourcesPlaceholderConfigurer p =  new PropertySourcesPlaceholderConfigurer();
-	     p.setIgnoreResourceNotFound(true);
-
-	    return p;
-	 }
+	
 }
