@@ -9,7 +9,7 @@ node{
 	}
 	stage("Run Junit and Integration Test cases"){}
 	stage("Build docker image"){
-		app=docker.build("kubernetes-pro-273015/kubernates-microservice")
+		app=docker.build("microservices-2020/kubernates-microservice")
 	}
 	stage("Push Docker image to Container Registry"){
 			docker.withRegistry('https://eu.gcr.io', 'gcr:myregistry') {
