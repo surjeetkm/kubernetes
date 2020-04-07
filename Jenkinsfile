@@ -12,7 +12,7 @@ node{
 		app=docker.build("microservices-2020/kubernates-microservice")
 	}
 	stage("Push Docker image to Container Registry"){
-			docker.withRegistry('https://eu.gcr.io', 'myregistry') {
+			docker.withRegistry('https://eu.gcr.io', 'gcr.io/myregistry') {
  	 		app.push("${env.BUILD_NUMBER}")
  	 		app.push("latest")
 		}
